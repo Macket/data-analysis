@@ -1,0 +1,8 @@
+*.txt
+*.csv
+*.dat
+*.tsv
+*.state
+*.zip
+*.json
+*checkpoint.ipynb

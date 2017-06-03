@@ -1,0 +1,159 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\Ivan\\Anaconda2\\lib\\site-packages\\sklearn\\lda.py:4: DeprecationWarning: lda.LDA has been moved to discriminant_analysis.LinearDiscriminantAnalysis in 0.17 and will be removed in 0.19\n",
+      "  \"in 0.17 and will be removed in 0.19\", DeprecationWarning)\n",
+      "C:\\Users\\Ivan\\Anaconda2\\lib\\site-packages\\sklearn\\qda.py:4: DeprecationWarning: qda.QDA has been moved to discriminant_analysis.QuadraticDiscriminantAnalysis in 0.17 and will be removed in 0.19.\n",
+      "  \"in 0.17 and will be removed in 0.19.\", DeprecationWarning)\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn import *"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "digits = datasets.load_digits()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "breast_cancer = datasets.load_breast_cancer()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### 1.Качество на digits при использовании BernoulliNB (B), MultinomialNB(M) и GaussianNB(G)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "clf_B = naive_bayes.BernoulliNB()\n",
+    "score_digits_B = cross_validation.cross_val_score(clf_B, digits.data, digits.target)\n",
+    "\n",
+    "clf_M = naive_bayes.MultinomialNB()\n",
+    "score_digits_M = cross_validation.cross_val_score(clf_M, digits.data, digits.target)\n",
+    "\n",
+    "clf_G = naive_bayes.GaussianNB()\n",
+    "score_digits_G = cross_validation.cross_val_score(clf_G, digits.data, digits.target)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Bernoulli_score: 0.825823650778; Multinomial_score: 0.870877148974; Gaussian_score: 0.818600380355\n"
+     ]
+    }
+   ],
+   "source": [
+    "print 'Bernoulli_score: {}; Multinomial_score: {}; Gaussian_score: {}'.format(score_digits_B.mean(),\n",
+    "                                                                             score_digits_M.mean(), score_digits_G.mean())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### 2.Качество на breast_cancer при использовании BernoulliNB (B), MultinomialNB(M) и GaussianNB(G)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "clf_B = naive_bayes.BernoulliNB()\n",
+    "score_digits_B = cross_validation.cross_val_score(clf_B, breast_cancer.data, breast_cancer.target)\n",
+    "\n",
+    "clf_M = naive_bayes.MultinomialNB()\n",
+    "score_digits_M = cross_validation.cross_val_score(clf_M, breast_cancer.data, breast_cancer.target)\n",
+    "\n",
+    "clf_G = naive_bayes.GaussianNB()\n",
+    "score_digits_G = cross_validation.cross_val_score(clf_G, breast_cancer.data, breast_cancer.target)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Bernoulli_score: 0.627420402859; Multinomial_score: 0.894579040193; Gaussian_score: 0.936749280609\n"
+     ]
+    }
+   ],
+   "source": [
+    "print 'Bernoulli_score: {}; Multinomial_score: {}; Gaussian_score: {}'.format(score_digits_B.mean(),\n",
+    "                                                                             score_digits_M.mean(), score_digits_G.mean())"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [default]",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
